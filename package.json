@@ -1,0 +1,17 @@
+{
+  "name": "filesapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "test": "",
+    "start": "node server.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^11.13.4",
+    "express": "^4.16.4",
+    "glob": "^7.1.3"
+  }
+}
