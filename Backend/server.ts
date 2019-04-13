@@ -19,12 +19,12 @@ app.use(function(_req, res, next) {
 
 app.get('/movies', (_req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  getMovies1().then((result) => res.end(JSON.stringify({ moviesArray: result })));
+  getMovies1().then((result) => res.json(JSON.stringify({ moviesArray: result })));
 });
 
 app.get('/', (_req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  getMovies1().then((res) => res.end(JSON.stringify({ moviesArray: res })));
+  getMovies1().then((res) => res.json(JSON.stringify({ moviesArray: res })));
 });
 
 app.listen(port, () => appStarted);
