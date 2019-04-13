@@ -7,8 +7,9 @@ import { ShowsService } from './services/shows.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'tvApp';
+  title = 'Movies App';
   movies = [];
+  model = '';
   constructor(private showsServ: ShowsService) {
   }
 
@@ -22,5 +23,11 @@ export class AppComponent implements OnInit {
         }
       }
     );
+  }
+
+  openMovie() {
+    const url = 'file:/E:/Downloads/1Movies';
+    // const fileURL = URL.createObjectURL(url);
+    window.open(url);
   }
 }
