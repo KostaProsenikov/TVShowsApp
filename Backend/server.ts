@@ -17,14 +17,23 @@ app.use(function(_req, res, next) {
   next();
 });
 
-app.get('/movies', (_req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  getMovies1().then((result) => res.json(JSON.stringify({ moviesArray: result })));
+app.get('/movies', async (_req, res, next) => {
+  try {
+    res.setHeader('Content-Type', 'application/json');
+    let movies = await getMovies1().then((result) => 
+      res.send(JSON.stringify({ moviesArray: result })));
+  } catch (err) {
+    next(err);
+  }
 });
 
-app.get('/', (_req, res) => {
+app.get('/', async (_req, res, next) => {
+  try {
   res.setHeader('Content-Type', 'application/json');
-  getMovies1().then((res) => res.json(JSON.stringify({ moviesArray: res })));
+  getMovies1().then((result) => res.json(JSON.stringify({ moviesArray: result })));
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.listen(port, () => appStarted);

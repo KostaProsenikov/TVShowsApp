@@ -8,13 +8,18 @@ import { ShowsService } from './services/shows.service';
 })
 export class AppComponent implements OnInit {
   title = 'tvApp';
+  movies = [];
   constructor(private showsServ: ShowsService) {
   }
 
   ngOnInit() {
     this.showsServ.getMovies().subscribe(
       (res) => {
-        console.log('res', res);
+        const result = JSON.parse(res);
+        if (result && result.moviesArray) {
+          this.movies = result.moviesArray;
+          console.log('movies', this.movies );
+        }
       }
     );
   }
