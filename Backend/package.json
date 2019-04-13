@@ -4,10 +4,9 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "test": "",
     "start": "node server.ts"
   },
-  "author": "",
+  "author": "Kostadin Prosenikov",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^11.13.4",
