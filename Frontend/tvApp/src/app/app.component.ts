@@ -18,16 +18,20 @@ export class AppComponent implements OnInit {
       (res) => {
         const result = JSON.parse(res);
         if (result && result.moviesArray) {
-          this.movies = result.moviesArray;
-          console.log('movies', this.movies );
+          this.movies = [];
+          result.moviesArray.forEach((movie) => {
+            const parsedMovie = movie.slice(0, -5);
+            this.movies.push({originalName: movie, parsedName: parsedMovie});
+          });
         }
       }
     );
   }
 
-  openMovie() {
-    const url = 'file:/E:/Downloads/1Movies';
-    // const fileURL = URL.createObjectURL(url);
-    window.open(url);
+  openMovie(name: string) {
+    console.log('open', name);
+    this.showsServ.openMovie(name).subscribe(
+      () => { console.log('Success'); }
+    );
   }
 }

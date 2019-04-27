@@ -20,7 +20,7 @@ app.use(function(_req, res, next) {
 app.get('/movies', async (_req, res, next) => {
   try {
     res.setHeader('Content-Type', 'application/json');
-    let movies = await getMovies1().then((result) => 
+    await getMovies1().then((result) => 
       res.send(JSON.stringify({ moviesArray: result })));
   } catch (err) {
     next(err);
@@ -31,6 +31,17 @@ app.get('/', async (_req, res, next) => {
   try {
   res.setHeader('Content-Type', 'application/json');
   getMovies1().then((result) => res.json(JSON.stringify({ moviesArray: result })));
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/movie/:name', async (req, res, next) => {
+  try {
+    const movieName = req.params.name;
+    const url = `"E:\\Downloads\\1Movies\\${movieName}\\"`;
+    require('child_process').exec(`explorer.exe ${url}`);
+    res.json(true);
   } catch (err) {
     next(err);
   }

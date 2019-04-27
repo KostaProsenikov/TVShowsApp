@@ -12,4 +12,8 @@ export class ShowsService {
   getMovies(): Observable<any> {
     return this.http.get('http://localhost:3000/');
   }
+
+  openMovie(name: string) {
+    return this.http.get(`http://localhost:3000/movie/${name}/`);
+  }
 }
