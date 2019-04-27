@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShowsService } from './services/shows.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +20,23 @@ export class AppComponent implements OnInit {
         const result = JSON.parse(res);
         if (result && result.moviesArray) {
           this.movies = [];
-          result.moviesArray.forEach((movie) => {
+          result.moviesArray.forEach((movie: string) => {
             const parsedMovie = movie.slice(0, -5);
-            this.movies.push({originalName: movie, parsedName: parsedMovie});
+            this.showsServ.searchMovie(parsedMovie).subscribe(
+              (tmbdResult: any) => {
+                if (tmbdResult.results && tmbdResult.results.length) {
+                  const movieFound = tmbdResult.results[0];
+                  const baseImageUrl = `https://image.tmdb.org/t/p/w500/`;
+                  this.movies.push({ originalName: movie,
+                                     poster: baseImageUrl + movieFound.poster_path,
+                                     rating: movieFound.vote_average,
+                                     movieObj: movieFound});
+                } else {
+                  this.movies.push({originalName: movie, rating: 0, parsedName: parsedMovie});
+                }
+                this.movies = _.orderBy(this.movies, ['rating'], ['desc']);
+              }
+            );
           });
         }
       }
@@ -29,7 +44,6 @@ export class AppComponent implements OnInit {
   }
 
   openMovie(name: string) {
-    console.log('open', name);
     this.showsServ.openMovie(name).subscribe(
       () => { console.log('Success'); }
     );
