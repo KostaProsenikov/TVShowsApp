@@ -40,7 +40,7 @@ app.get('/movie/:name', async (req, res, next) => {
   try {
     const movieName = req.params.name;
     const url = `"E:\\Downloads\\1Movies\\${movieName}\\"`;
-    require('child_process').exec(`explorer.exe ${url}`);
+    require('child_process').exec(`start "" ${url}`);
     res.json(true);
   } catch (err) {
     next(err);

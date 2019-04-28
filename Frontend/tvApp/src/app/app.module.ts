@@ -6,10 +6,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ShowsService } from './services/shows.service';
+import { NavigationComponent } from './nav/navigation/navigation.component';
+import { FooterComponent } from './nav/footer/footer.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavigationComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

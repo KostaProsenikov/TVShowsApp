@@ -1,0 +1,15 @@
+.bg-light {
+    background-color: #303030 !important;
+}
+
+.navbar-light .navbar-nav .nav-link, .navbar-brand  {
+    color: white;
+}
+
+a.navbar-brand {
+    color: white !important;
+}
+
+.bg-primary {
+    background-color: #375a7f !important;
+}

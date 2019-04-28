@@ -1,0 +1,8 @@
+.mastfoot {
+    color: rgba(255, 255, 255, .5);
+    background-color: #212529;
+}
+.mt-auto, .my-auto {
+    text-align: center!important;
+    margin-top: auto!important;
+}

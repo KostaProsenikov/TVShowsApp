@@ -26,13 +26,21 @@ export class AppComponent implements OnInit {
               (tmbdResult: any) => {
                 if (tmbdResult.results && tmbdResult.results.length) {
                   const movieFound = tmbdResult.results[0];
+                  let lastSentenceStartIndex = movieFound.overview.lastIndexOf('.');
+                  // if (lastSentenceStartIndex > 150) {
+                  // for (const indexName of movieFound.overview.split('.').length) {
+                  //     lastSentenceStartIndex = movieFound.overview.indexOf('.');
+
+                  //   }
+                  // }
                   const baseImageUrl = `https://image.tmdb.org/t/p/w500/`;
                   this.movies.push({ originalName: movie,
                                      poster: baseImageUrl + movieFound.poster_path,
+                                     description: movieFound.overview.substring(0, lastSentenceStartIndex + 1),
                                      rating: movieFound.vote_average,
                                      movieObj: movieFound});
                 } else {
-                  this.movies.push({originalName: movie, rating: 0, parsedName: parsedMovie});
+                  this.movies.push({originalName: movie, rating: 0, description: '', parsedName: parsedMovie});
                 }
                 this.movies = _.orderBy(this.movies, ['rating'], ['desc']);
               }
