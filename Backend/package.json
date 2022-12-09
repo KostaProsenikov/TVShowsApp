@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^11.13.4",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "glob": "^7.1.3"
   }
 }
